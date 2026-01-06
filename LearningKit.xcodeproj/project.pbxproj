@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F87CA7A92EF003830087F0BE /* MLX in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7A82EF003830087F0BE /* MLX */; };
+		F87CA7AB2EF003830087F0BE /* MLXFast in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7AA2EF003830087F0BE /* MLXFast */; };
+		F87CA7AD2EF003830087F0BE /* MLXFFT in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7AC2EF003830087F0BE /* MLXFFT */; };
+		F87CA7AF2EF003830087F0BE /* MLXLinalg in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7AE2EF003830087F0BE /* MLXLinalg */; };
+		F87CA7B12EF003830087F0BE /* MLXNN in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7B02EF003830087F0BE /* MLXNN */; };
+		F87CA7B32EF003830087F0BE /* MLXOptimizers in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7B22EF003830087F0BE /* MLXOptimizers */; };
+		F87CA7B52EF003830087F0BE /* MLXRandom in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7B42EF003830087F0BE /* MLXRandom */; };
+		F87CA7B72EF003830087F0BE /* MLXEmbedders in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7B62EF003830087F0BE /* MLXEmbedders */; };
+		F87CA7B92EF003830087F0BE /* MLXLLM in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7B82EF003830087F0BE /* MLXLLM */; };
+		F87CA7BB2EF003830087F0BE /* MLXLMCommon in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7BA2EF003830087F0BE /* MLXLMCommon */; };
+		F87CA7BD2EF003830087F0BE /* MLXVLM in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7BC2EF003830087F0BE /* MLXVLM */; };
+		F87CA7C02EF0047B0087F0BE /* Hub in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7BF2EF0047B0087F0BE /* Hub */; };
+		F87CA7C22EF0047B0087F0BE /* Tokenizers in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7C12EF0047B0087F0BE /* Tokenizers */; };
+		F87CA7C42EF0047B0087F0BE /* Transformers in Frameworks */ = {isa = PBXBuildFile; productRef = F87CA7C32EF0047B0087F0BE /* Transformers */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F87CA7752EEFFC010087F0BE /* LearningKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F87CA7772EEFFC010087F0BE /* LearningKit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LearningKit;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F87CA7722EEFFC010087F0BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F87CA7C42EF0047B0087F0BE /* Transformers in Frameworks */,
+				F87CA7BB2EF003830087F0BE /* MLXLMCommon in Frameworks */,
+				F87CA7B92EF003830087F0BE /* MLXLLM in Frameworks */,
+				F87CA7B72EF003830087F0BE /* MLXEmbedders in Frameworks */,
+				F87CA7C22EF0047B0087F0BE /* Tokenizers in Frameworks */,
+				F87CA7BD2EF003830087F0BE /* MLXVLM in Frameworks */,
+				F87CA7B32EF003830087F0BE /* MLXOptimizers in Frameworks */,
+				F87CA7AB2EF003830087F0BE /* MLXFast in Frameworks */,
+				F87CA7C02EF0047B0087F0BE /* Hub in Frameworks */,
+				F87CA7AF2EF003830087F0BE /* MLXLinalg in Frameworks */,
+				F87CA7A92EF003830087F0BE /* MLX in Frameworks */,
+				F87CA7B12EF003830087F0BE /* MLXNN in Frameworks */,
+				F87CA7AD2EF003830087F0BE /* MLXFFT in Frameworks */,
+				F87CA7B52EF003830087F0BE /* MLXRandom in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F87CA76C2EEFFC010087F0BE = {
+			isa = PBXGroup;
+			children = (
+				F87CA7772EEFFC010087F0BE /* LearningKit */,
+				F87CA7A72EF003830087F0BE /* Frameworks */,
+				F87CA7762EEFFC010087F0BE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F87CA7762EEFFC010087F0BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F87CA7752EEFFC010087F0BE /* LearningKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F87CA7A72EF003830087F0BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F87CA7742EEFFC010087F0BE /* LearningKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F87CA7962EEFFC020087F0BE /* Build configuration list for PBXNativeTarget "LearningKit" */;
+			buildPhases = (
+				F87CA7712EEFFC010087F0BE /* Sources */,
+				F87CA7722EEFFC010087F0BE /* Frameworks */,
+				F87CA7732EEFFC010087F0BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F87CA7772EEFFC010087F0BE /* LearningKit */,
+			);
+			name = LearningKit;
+			packageProductDependencies = (
+				F87CA7A82EF003830087F0BE /* MLX */,
+				F87CA7AA2EF003830087F0BE /* MLXFast */,
+				F87CA7AC2EF003830087F0BE /* MLXFFT */,
+				F87CA7AE2EF003830087F0BE /* MLXLinalg */,
+				F87CA7B02EF003830087F0BE /* MLXNN */,
+				F87CA7B22EF003830087F0BE /* MLXOptimizers */,
+				F87CA7B42EF003830087F0BE /* MLXRandom */,
+				F87CA7B62EF003830087F0BE /* MLXEmbedders */,
+				F87CA7B82EF003830087F0BE /* MLXLLM */,
+				F87CA7BA2EF003830087F0BE /* MLXLMCommon */,
+				F87CA7BC2EF003830087F0BE /* MLXVLM */,
+				F87CA7BF2EF0047B0087F0BE /* Hub */,
+				F87CA7C12EF0047B0087F0BE /* Tokenizers */,
+				F87CA7C32EF0047B0087F0BE /* Transformers */,
+			);
+			productName = GammarTeacher;
+			productReference = F87CA7752EEFFC010087F0BE /* LearningKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F87CA76D2EEFFC010087F0BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					F87CA7742EEFFC010087F0BE = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+				};
+			};
+			buildConfigurationList = F87CA7702EEFFC010087F0BE /* Build configuration list for PBXProject "LearningKit" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F87CA76C2EEFFC010087F0BE;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */,
+				F87CA7A62EF003130087F0BE /* XCRemoteSwiftPackageReference "mlx-swift-lm" */,
+				F87CA7BE2EF0047B0087F0BE /* XCRemoteSwiftPackageReference "swift-transformers" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F87CA7762EEFFC010087F0BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F87CA7742EEFFC010087F0BE /* LearningKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F87CA7732EEFFC010087F0BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F87CA7712EEFFC010087F0BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F87CA7942EEFFC020087F0BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = KWU77R3TC2;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F87CA7952EEFFC020087F0BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = KWU77R3TC2;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		F87CA7972EEFFC020087F0BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KWU77R3TC2;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GammarTeacher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F87CA7982EEFFC020087F0BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = KWU77R3TC2;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.GammarTeacher;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F87CA7702EEFFC010087F0BE /* Build configuration list for PBXProject "LearningKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F87CA7942EEFFC020087F0BE /* Debug */,
+				F87CA7952EEFFC020087F0BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F87CA7962EEFFC020087F0BE /* Build configuration list for PBXNativeTarget "LearningKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F87CA7972EEFFC020087F0BE /* Debug */,
+				F87CA7982EEFFC020087F0BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.29.1;
+			};
+		};
+		F87CA7A62EF003130087F0BE /* XCRemoteSwiftPackageReference "mlx-swift-lm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ml-explore/mlx-swift-lm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.29.2;
+			};
+		};
+		F87CA7BE2EF0047B0087F0BE /* XCRemoteSwiftPackageReference "swift-transformers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/huggingface/swift-transformers";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.5;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F87CA7A82EF003830087F0BE /* MLX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLX;
+		};
+		F87CA7AA2EF003830087F0BE /* MLXFast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXFast;
+		};
+		F87CA7AC2EF003830087F0BE /* MLXFFT */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXFFT;
+		};
+		F87CA7AE2EF003830087F0BE /* MLXLinalg */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXLinalg;
+		};
+		F87CA7B02EF003830087F0BE /* MLXNN */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXNN;
+		};
+		F87CA7B22EF003830087F0BE /* MLXOptimizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXOptimizers;
+		};
+		F87CA7B42EF003830087F0BE /* MLXRandom */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A52EF002FF0087F0BE /* XCRemoteSwiftPackageReference "mlx-swift" */;
+			productName = MLXRandom;
+		};
+		F87CA7B62EF003830087F0BE /* MLXEmbedders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A62EF003130087F0BE /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXEmbedders;
+		};
+		F87CA7B82EF003830087F0BE /* MLXLLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A62EF003130087F0BE /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLLM;
+		};
+		F87CA7BA2EF003830087F0BE /* MLXLMCommon */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A62EF003130087F0BE /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXLMCommon;
+		};
+		F87CA7BC2EF003830087F0BE /* MLXVLM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7A62EF003130087F0BE /* XCRemoteSwiftPackageReference "mlx-swift-lm" */;
+			productName = MLXVLM;
+		};
+		F87CA7BF2EF0047B0087F0BE /* Hub */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7BE2EF0047B0087F0BE /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Hub;
+		};
+		F87CA7C12EF0047B0087F0BE /* Tokenizers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7BE2EF0047B0087F0BE /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Tokenizers;
+		};
+		F87CA7C32EF0047B0087F0BE /* Transformers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F87CA7BE2EF0047B0087F0BE /* XCRemoteSwiftPackageReference "swift-transformers" */;
+			productName = Transformers;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = F87CA76D2EEFFC010087F0BE /* Project object */;
+}

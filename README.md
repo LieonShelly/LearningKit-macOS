@@ -350,3 +350,16 @@ flowchart TD
         - 惩罚遗忘：一旦你忘了一次，之前积累的时间优势全部清零，必须从头开始爬坡。
         - 区分难易：简单的词（Easy）会通过 $EF$ 的增加和 $1.3$ 倍的修正，迅速被推到 30 天、60 天甚至半年后复习。
         - 关注困难：困难的词（Hard）会通过 $EF$ 的降低和 $0.85$ 倍的修正，被限制在较短的复习周期内（比如 3 天、5 天），直到你掌握它为止。
+
+## 软件截图
+
+<img src="Screenshots/5.png" width="300" height="200">
+
+<img src="Screenshots/4.png" width="300" height="200">
+
+<img src="Screenshots/3.png" width="300" height="200">
+
+<img src="Screenshots/2.png" width="300" height="200">
+
+<img src="Screenshots/1.png" width="300" height="200">
+

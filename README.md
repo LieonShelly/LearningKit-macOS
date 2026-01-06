@@ -156,7 +156,7 @@ classDiagram
 
     - ``SoundManager``: 单例模式，负责播放机械键盘音效 (NSSound) 和单词发音 (AVSpeechSynthesizer)。
 
-### 2.2 关键通信流程 (Data Flow)
+### 2.2 关键通信流程
 ```mermaid
 sequenceDiagram
     autonumber
@@ -227,7 +227,7 @@ sequenceDiagram
     - 错误: 播放失败音效 -> 进入 ``punishment`` 状态 -> 强制重输 3 次 -> 标记为 "Again" -> 必须当天重背。
 
 
-### 3. 快速开始 (Getting Started)
+### 3. 快速开始
 - 环境要求
     - macOS 26
     - Xcode 26

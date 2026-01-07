@@ -11,10 +11,10 @@ import SwiftData
 @Observable
 class QuizViewModel {
     enum SessionState {
-        case idle           // 闲置
-        case questioning    // 提问中
-        case punishment     // 错误罚写中
-        case grading        // 答对后，等待评分中 (新增状态)
+        case idle
+        case questioning
+        case punishment
+        case grading
     }
     
     private var reviewQueue: [WordItem] = []

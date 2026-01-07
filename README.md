@@ -47,59 +47,51 @@ LearningKit 是一款专为 macOS 打造的极客背单词应用。它摒弃了�
 classDiagram
     direction TB
 
-    %% UI Layer
-    namespace ViewLayer {
-        class LearningKitApp
-        class ContentView
-        class PracticeView
-        class SRSButton
+    %% --- View Layer ---
+    class LearningKitApp
+    class ContentView
+    class PracticeView
+    class SRSButton
+
+    %% --- ViewModel Layer ---
+    class QuizViewModel {
+        +SessionState currentState
+        +WordItem currentWord
+        +startSession()
+        +submitAnswer()
+        +deleteCurrentWord()
     }
 
-    %% ViewModel Layer
-    namespace ViewModelLayer {
-        class QuizViewModel {
-            +SessionState currentState
-            +WordItem currentWord
-            +startSession()
-            +submitAnswer()
-            +deleteCurrentWord()
-        }
+    %% --- Data Layer ---
+    class WordItem {
+        <<SwiftData Model>>
+        +String spelling
+        +String aiExplanation
+        +Date nextReviewDate
+        +Double interval
+        +Double easeFactor
+    }
+    class JSONImporter {
+        +importJSON()
     }
 
-    %% Data Layer
-    namespace DataLayer {
-        class WordItem {
-            <<SwiftData Model>>
-            +String spelling
-            +String aiExplanation
-            +Date nextReviewDate
-            +Double interval
-            +Double easeFactor
-        }
-        class JSONImporter {
-            +importJSON()
-        }
+    %% --- Service Layer ---
+    class WordEngine {
+        <<Actor>>
+        +loadModel()
+        +explainWord()
+    }
+    class SRSLogic {
+        <<Static>>
+        +calculate()
+    }
+    class SoundManager {
+        <<Singleton>>
+        +speak()
+        +playKeyClick()
     }
 
-    %% Service Layer
-    namespace ServiceLayer {
-        class WordEngine {
-            <<Actor>>
-            +loadModel()
-            +explainWord() -> AsyncStream
-        }
-        class SRSLogic {
-            <<Static>>
-            +calculate()
-        }
-        class SoundManager {
-            <<Singleton>>
-            +speak()
-            +playKeyClick()
-        }
-    }
-
-    %% Relationships
+    %% --- Relationships ---
     LearningKitApp --> ContentView : Launch
     ContentView --> JSONImporter : Import Data
     ContentView --> PracticeView : Navigation
@@ -301,35 +293,35 @@ sequenceDiagram
                     - 选 Hard：$EF$ 减小（下次间隔倍率变小，复习更频繁）。
 
 ```mermaid
-flowchart TD
+graph TD
     %% 定义样式
     classDef input fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
     classDef decision fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
     classDef process fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
     classDef fail fill:#ffebee,stroke:#c62828,stroke-width:2px;
     classDef output fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
-    %% 定义一个专门的黄色便签样式
     classDef noteStyle fill:#fff9c4,stroke:#fbc02d,stroke-width:1px,stroke-dasharray: 5 5,text-align:left;
 
     Start((开始计算)) --> Input[用户评分 Grade: 1-4]:::input
     Input --> CheckGrade{评分是 Again ?}:::decision
 
-    %% 分支：忘记 (Again)
-    CheckGrade -- 是 (忘了) --> ResetRep[连胜次数 n = 0]:::fail
+    %% 分支：忘记
+    CheckGrade -- 是 --> ResetRep[连胜次数 n = 0]:::fail
     ResetRep --> ResetInterval[复习间隔 I = 0]:::fail
     ResetInterval --> DropEF[难度系数 EF 减少 0.2]:::fail
     DropEF --> CheckMinEF
 
-    %% 分支：记住 (Hard/Good/Easy)
-    CheckGrade -- 否 (记住了) --> IncRep[连胜次数 n + 1]:::process
+    %% 分支：记住
+    CheckGrade -- 否 --> IncRep[连胜次数 n + 1]:::process
     IncRep --> CheckRep{当前是第几次连胜?}:::decision
 
     %% 间隔计算逻辑
-    CheckRep -- 0次 (第一次对) --> Int1[复习间隔 I = 1天]:::process
-    CheckRep -- 1次 (第二次对) --> Int6[复习间隔 I = 6天]:::process
+    CheckRep -- 0次 --> Int1[复习间隔 I = 1天]:::process
+    CheckRep -- 1次 --> Int6[复习间隔 I = 6天]:::process
     CheckRep -- 2次及以上 --> CalcInt[指数计算: I = 旧间隔 * EF * 修正系数]:::process
     
-    ModifierNote["📝 修正系数 Modifier:<br/>Hard: x0.85<br/>Easy: x1.3<br/>Good: x1.0"]:::noteStyle
+    %% 注释节点 (移除了 emoji 以防报错)
+    ModifierNote["修正系数 Modifier:<br/>Hard: x0.85<br/>Easy: x1.3<br/>Good: x1.0"]:::noteStyle
     CalcInt -.- ModifierNote
 
     %% EF 计算逻辑
@@ -341,7 +333,7 @@ flowchart TD
     %% 兜底与输出
     CheckMinEF{EF < 1.3 ?}:::decision
     CheckMinEF -- 是 --> SetMinEF[EF = 1.3]:::process
-    CheckMinEF -- 否 --> Output((输出结果:\n新间隔 / 新EF / 新连胜)):::output
+    CheckMinEF -- 否 --> Output((输出结果)):::output
     SetMinEF --> Output
 ```
 

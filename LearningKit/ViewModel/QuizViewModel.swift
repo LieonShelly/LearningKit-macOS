@@ -43,7 +43,7 @@ class QuizViewModel {
             let allWords = try context.fetch(descriptor)
             let now = Date.now
             let newwords = allWords.filter { $0.lastReviewDate == nil }
-                .sorted(by: {$0.createdTime < $1.createdTime })
+                .sorted(by: {$0.createdTime > $1.createdTime })
             let dueWords = allWords.filter { $0.lastReviewDate != nil && $0.nextReviewDate <= now}
                 .sorted(by: { $0.nextReviewDate < $1.nextReviewDate })
             let limit = 300

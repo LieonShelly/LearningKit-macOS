@@ -34,38 +34,42 @@ class JSONImporter {
     private init() {}
     
     /// 导入 JSON 文件到 SwiftData
+    /// 导入 JSON 文件到 SwiftData
     func importJSON(from url: URL, into modelContext: ModelContext) throws -> (Int, Int) {
         let data = try Data(contentsOf: url)
         let decoder = JSONDecoder()
         let root = try decoder.decode(ImportRoot.self, from: data)
         let items = root.data.itemList
         
-        var successCount = 0
-        var skipCount = 0
-    
+        var successCount = 0 // 新增的数量
+        var updateCount = 0  // 更新（原跳过）的数量
+        
         for item in items {
             let spelling = item.word.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            let descriptor = FetchDescriptor<WordItem>(
+            var descriptor = FetchDescriptor<WordItem>(
                 predicate: #Predicate { $0.spelling == spelling }
             )
-            
-            if let existingCount = try? modelContext.fetchCount(descriptor), existingCount > 0 {
-                skipCount += 1
-                continue
+            descriptor.fetchLimit = 1
+            let formatter =  DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            let createTime = formatter.date(from: item.createTime ?? "") ?? Date.now
+            if let existingWords = try? modelContext.fetch(descriptor),
+               let existingWord = existingWords.first {
+                existingWord.createdTime = createTime
+                updateCount += 1
+            } else {
+                let newWord = WordItem(
+                    spelling: spelling,
+                    chineseDefinition: item.trans,
+                    originalId: item.itemId,
+                    createdTime: createTime
+                )
+                modelContext.insert(newWord)
+                successCount += 1
             }
-            let newWord = WordItem(
-                spelling: spelling,
-                chineseDefinition: item.trans,
-                originalId: item.itemId
-            )
-            
-            modelContext.insert(newWord)
-            successCount += 1
         }
-        
         try? modelContext.save()
         
-        return (successCount, skipCount)
+        return (successCount, updateCount)
     }
 }

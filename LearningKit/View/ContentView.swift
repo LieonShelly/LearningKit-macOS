@@ -17,8 +17,13 @@ struct ContentView: View {
     @State private var showingAlert = false
     @State private var isSelectingModel = false
     @State private var modelPath: String? = UserDefaults.standard.string(forKey: "modelPath")
-    
+    var dateformat: DateFormatter {
+        let dateformat = DateFormatter()
+        dateformat.dateFormat = "yyyy-MM-DD HH:mm:ss"
+        return dateformat
+    }
     var body: some View {
+        
         NavigationSplitView {
             VStack(alignment: .leading) {
                 Text("Total Words: \(words.count)")
@@ -31,6 +36,11 @@ struct ContentView: View {
                         Text(word.spelling)
                             .font(.headline)
                         Text(word.chineseDefinition.replacingOccurrences(of: "\n", with: " "))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                        
+                        Text(dateformat.string(from: word.createdTime))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                             .lineLimit(1)

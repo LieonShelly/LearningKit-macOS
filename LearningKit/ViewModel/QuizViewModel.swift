@@ -46,16 +46,15 @@ class QuizViewModel {
                 .sorted(by: {$0.createdTime > $1.createdTime })
             let dueWords = allWords.filter { $0.lastReviewDate != nil && $0.nextReviewDate <= now}
                 .sorted(by: { $0.nextReviewDate < $1.nextReviewDate })
-            let limit = 300
             var combinedQueue: [WordItem] = []
-            combinedQueue.append(contentsOf: newwords)
-            if combinedQueue.count < limit {
-                let remainingSpace = limit - combinedQueue.count
-                let wordsTodd = dueWords.prefix(remainingSpace)
-                combinedQueue.append(contentsOf: wordsTodd)
-            } else {
-                combinedQueue = Array(combinedQueue.prefix(limit))
-            }
+            
+            let reviewLimit = 100
+            let selectedReviews = dueWords.prefix(reviewLimit)
+            combinedQueue.append(contentsOf: selectedReviews)
+            
+            let newLitmit = 200
+            let selectedNew = newwords.prefix(newLitmit)
+            combinedQueue.append(contentsOf: selectedNew)
 
             self.reviewQueue = combinedQueue
             self.sessionTotalCount = reviewQueue.count

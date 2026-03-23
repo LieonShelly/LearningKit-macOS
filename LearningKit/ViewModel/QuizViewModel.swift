@@ -58,10 +58,10 @@ class QuizViewModel {
 
             self.reviewQueue = combinedQueue
             self.sessionTotalCount = reviewQueue.count
-            print("Session started. Due words: \(reviewQueue.count)")
+            AppLogger.shared.info("Session started. Due words: \(reviewQueue.count)")
             nextWord()
         } catch {
-            print("Fetch failed: \(error)")
+            AppLogger.shared.error("Fetch failed: \(error)")
         }
     }
     
@@ -101,7 +101,11 @@ class QuizViewModel {
     func deleteCurrentWord() {
         if let currentWord {
             context?.delete(currentWord)
-            try? context?.save()
+            do {
+                try context?.save()
+            } catch {
+                AppLogger.shared.error("Failed to save after delete: \(error)")
+            }
         }
         nextWord()
     }
@@ -126,7 +130,11 @@ class QuizViewModel {
         }
         
         word.lastReviewDate = Date.now
-        try? ctx.save()
+        do {
+            try ctx.save()
+        } catch {
+            AppLogger.shared.error("Failed to save grading: \(error)")
+        }
         
         nextWord()
     }
@@ -141,9 +149,9 @@ class QuizViewModel {
     func loadModel(path: String) async {
         do {
             try await engine.loadModel(from: path)
-            print("Model loaded successfully at \(path)")
+            AppLogger.shared.info("Model loaded successfully at \(path)")
         } catch {
-            print("Failed to load model: \(error)")
+            AppLogger.shared.error("Failed to load model: \(error)")
         }
     }
     
@@ -214,10 +222,14 @@ class QuizViewModel {
                         wordItem.aiSynonym = result.synonym
                         self.aiOutputText = result.definition
                         
-                        try? context?.save()
+                        do {
+                            try context?.save()
+                        } catch {
+                            AppLogger.shared.error("Failed to save AI data: \(error)")
+                        }
                         
                     } else {
-                        print("JSON Decode Failed. Raw output: \(fullJSONString)")
+                        AppLogger.shared.warn("JSON Decode Failed. Raw output: \(fullJSONString)")
                         self.aiOutputText = "Could not generate structured data."
                     }
                     
@@ -241,7 +253,7 @@ class QuizViewModel {
         
         text = text.trimmingCharacters(in: .whitespacesAndNewlines)
         if !text.isEmpty && text.last != "}" {
-            print("⚠️ JSON format warning: Missing closing brace. Attempting to fix.")
+            AppLogger.shared.warn("JSON format warning: Missing closing brace. Attempting to fix.")
             text += "}"
         }
         

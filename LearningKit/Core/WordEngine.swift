@@ -70,7 +70,7 @@ actor WordEngine {
                         }
                     }
                 } catch {
-                    print("❌ Explain error: \(error)")
+                    AppLogger.shared.error("Explain error: \(error)")
                 }
                 continuation.finish()
             }

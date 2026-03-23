@@ -68,7 +68,7 @@ class JSONImporter {
                 successCount += 1
             }
         }
-        try? modelContext.save()
+        try modelContext.save()
         
         return (successCount, updateCount)
     }

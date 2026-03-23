@@ -9,6 +9,28 @@ import SwiftUI
 import SwiftData
 import UniformTypeIdentifiers
 
+struct LogFileDocument: FileDocument {
+    static var readableContentTypes: [UTType] { [.plainText] }
+    
+    var text: String
+    
+    init() {
+        self.text = AppLogger.shared.readAll()
+    }
+    
+    init(configuration: ReadConfiguration) throws {
+        if let data = configuration.file.regularFileContents {
+            text = String(data: data, encoding: .utf8) ?? ""
+        } else {
+            text = ""
+        }
+    }
+    
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: Data(text.utf8))
+    }
+}
+
 struct ContentView: View {
     @Query(sort: \WordItem.createdTime, order: .reverse) private var words: [WordItem]
     @Environment(\.modelContext) private var modelContext
@@ -17,6 +39,7 @@ struct ContentView: View {
     @State private var showingAlert = false
     @State private var isSelectingModel = false
     @State private var modelPath: String? = UserDefaults.standard.string(forKey: "modelPath")
+    @State private var isExportingLog = false
     var dateformat: DateFormatter {
         let dateformat = DateFormatter()
         dateformat.dateFormat = "yyyy-MM-DD HH:mm:ss"
@@ -86,6 +109,21 @@ struct ContentView: View {
                         handleModelSelection(result: result)
                     }
                 }
+                ToolbarItem(placement: .automatic) {
+                    Button(action: { isExportingLog = true }) {
+                        Label("Export Log", systemImage: "doc.text")
+                    }
+                    .fileExporter(
+                        isPresented: $isExportingLog,
+                        document: LogFileDocument(),
+                        contentType: .plainText,
+                        defaultFilename: "LearningKit.log"
+                    ) { result in
+                        if case .failure(let error) = result {
+                            AppLogger.shared.error("Log export failed: \(error)")
+                        }
+                    }
+                }
             }
         } detail: {
             Text("Select a word to preview detail")
@@ -132,9 +170,9 @@ struct ContentView: View {
             modelPath = path
             UserDefaults.standard.set(path, forKey: "modelPath")
             url.stopAccessingSecurityScopedResource()
-            print("Model path selected: \(path)") // Debug log
+            AppLogger.shared.info("Model path selected: \(path)")
         case .failure(let error):
-            print(error)
+            AppLogger.shared.error("Model selection failed: \(error)")
         }
     }
 }

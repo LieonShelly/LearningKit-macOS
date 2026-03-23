@@ -66,10 +66,10 @@ actor GrammarEngine {
                             return .more
                         }
                     }
-                    print("Generation completed.")
+                    AppLogger.shared.info("Generation completed.")
                     
                 } catch {
-                    print("❌ Generation error: \(error)")
+                    AppLogger.shared.error("Generation error: \(error)")
                 }
                 
                 continuation.finish()

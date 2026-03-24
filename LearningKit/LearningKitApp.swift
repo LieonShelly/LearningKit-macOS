@@ -14,7 +14,7 @@ struct LearningKitApp: App {
     
     init() {
         do {
-            let schema = Schema([WordItem.self])
+            let schema = Schema([WordItem.self, SessionRecord.self])
             let config = ModelConfiguration(
                 "LearningKit",
                 schema: schema,
@@ -48,7 +48,7 @@ struct LearningKitApp: App {
         AppLogger.shared.warn("Removed WAL/SHM, retrying with main store file...")
         
         do {
-            let schema = Schema([WordItem.self])
+            let schema = Schema([WordItem.self, SessionRecord.self])
             let config = ModelConfiguration(
                 "LearningKit",
                 schema: schema,
@@ -72,7 +72,7 @@ struct LearningKitApp: App {
         }
         
         do {
-            let schema = Schema([WordItem.self])
+            let schema = Schema([WordItem.self, SessionRecord.self])
             let config = ModelConfiguration(
                 "LearningKit",
                 schema: schema,

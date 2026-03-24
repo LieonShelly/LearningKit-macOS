@@ -39,6 +39,16 @@ class QuizViewModel {
         self.context = context
         
         do {
+            // Try to restore an unfinished session
+            if let restored = try restoreSession(context: context) {
+                self.reviewQueue = restored.queue
+                self.sessionTotalCount = restored.totalCount
+                AppLogger.shared.info("Session restored. Remaining: \(reviewQueue.count)/\(sessionTotalCount)")
+                nextWord()
+                return
+            }
+            
+            // No saved session — build a new queue
             let descriptor = FetchDescriptor<WordItem>()
             let allWords = try context.fetch(descriptor)
             let now = Date.now
@@ -58,10 +68,74 @@ class QuizViewModel {
 
             self.reviewQueue = combinedQueue
             self.sessionTotalCount = reviewQueue.count
+            
+            // Persist the new session
+            saveSessionRecord()
+            
             AppLogger.shared.info("Session started. Due words: \(reviewQueue.count)")
             nextWord()
         } catch {
             AppLogger.shared.error("Fetch failed: \(error)")
+        }
+    }
+    
+    // MARK: - Session Persistence
+    
+    /// Attempt to restore an unfinished session from SwiftData
+    private func restoreSession(context: ModelContext) throws -> (queue: [WordItem], totalCount: Int)? {
+        let descriptor = FetchDescriptor<SessionRecord>()
+        guard let record = try context.fetch(descriptor).first else { return nil }
+        
+        let spellings = record.decodedSpellings()
+        guard !spellings.isEmpty else {
+            // Empty queue means session was completed — clean up stale record
+            context.delete(record)
+            try? context.save()
+            return nil
+        }
+        
+        // Resolve spellings back to WordItem objects, preserving order
+        let wordDescriptor = FetchDescriptor<WordItem>()
+        let allWords = try context.fetch(wordDescriptor)
+        let wordMap = Dictionary(uniqueKeysWithValues: allWords.map { ($0.spelling, $0) })
+        
+        let queue = spellings.compactMap { wordMap[$0] }
+        guard !queue.isEmpty else {
+            // All words were deleted — discard the record
+            context.delete(record)
+            try? context.save()
+            return nil
+        }
+        
+        return (queue: queue, totalCount: record.totalCount)
+    }
+    
+    /// Save current queue state to SwiftData
+    private func saveSessionRecord() {
+        guard let ctx = context else { return }
+        do {
+            // Delete any existing records first
+            let existing = try ctx.fetch(FetchDescriptor<SessionRecord>())
+            for record in existing { ctx.delete(record) }
+            
+            let spellings = reviewQueue.map { $0.spelling }
+            let record = SessionRecord(remainingSpellings: spellings, totalCount: sessionTotalCount)
+            ctx.insert(record)
+            try ctx.save()
+        } catch {
+            AppLogger.shared.error("Failed to save session record: \(error)")
+        }
+    }
+    
+    /// Clear the persisted session (called when session completes)
+    private func clearSessionRecord() {
+        guard let ctx = context else { return }
+        do {
+            let existing = try ctx.fetch(FetchDescriptor<SessionRecord>())
+            for record in existing { ctx.delete(record) }
+            try ctx.save()
+        } catch {
+            AppLogger.shared.error("Failed to clear session record: \(error)")
         }
     }
     
@@ -166,6 +240,7 @@ class QuizViewModel {
             currentState = .idle
             feedbackMessage = "All due words reviewed!"
             currentWord = nil
+            clearSessionRecord()
             return
         }
         
@@ -175,6 +250,9 @@ class QuizViewModel {
         userInput = ""
         feedbackMessage = "Type the English word"
         punishmentCount = 0
+        
+        // Persist remaining queue after advancing
+        saveSessionRecord()
         
         aiOutputText = ""
         
